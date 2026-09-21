@@ -16,7 +16,9 @@
       --line: #ddcdb9;
     }
 
-    * {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
@@ -31,13 +33,14 @@
     body {
       display: grid;
       place-items: center;
-      padding: 6px;
+      padding: clamp(4px, 2vw, 12px);
       font-family: Arial, sans-serif;
     }
 
     .widget {
-      width: min(100%, 232px);
-      padding: 14px 14px 13px;
+      container-type: inline-size;
+      width: min(100%, 320px);
+      padding: clamp(10px, 4cqw, 14px);
       overflow: hidden;
 
       background:
@@ -53,7 +56,7 @@
         );
 
       border: 1px solid rgba(192, 164, 134, 0.45);
-      border-radius: 22px;
+      border-radius: clamp(16px, 7cqw, 22px);
 
       box-shadow:
         0 14px 30px rgba(78, 59, 43, 0.10),
@@ -61,6 +64,7 @@
     }
 
     .clock {
+      container-type: inline-size;
       position: relative;
       width: 100%;
       aspect-ratio: 1;
@@ -79,37 +83,40 @@
 
       box-shadow:
         0 8px 18px rgba(78, 59, 43, 0.08),
-        inset 0 0 0 6px rgba(255, 255, 255, 0.38),
-        inset 0 0 0 7px rgba(185, 130, 88, 0.10);
+        inset 0 0 0 clamp(3px, 2.95cqw, 6px)
+          rgba(255, 255, 255, 0.38),
+        inset 0 0 0 clamp(4px, 3.45cqw, 7px)
+          rgba(185, 130, 88, 0.10);
     }
 
     .clock::before {
       content: "";
       position: absolute;
-      inset: 11px;
+      inset: 5.4cqw;
       z-index: 0;
+
       border: 1px solid rgba(185, 130, 88, 0.16);
       border-radius: 50%;
     }
 
     .mark {
       position: absolute;
-      top: 12px;
+      top: 5.9cqw;
       left: 50%;
       z-index: 1;
 
-      width: 1px;
-      height: 6px;
+      width: clamp(1px, 0.5cqw, 2px);
+      height: 2.95cqw;
 
       background: var(--taupe);
       border-radius: 10px;
 
-      transform-origin: 50% 89px;
+      transform-origin: 50% 43.6cqw;
     }
 
     .mark.major {
-      width: 2px;
-      height: 10px;
+      width: clamp(1.5px, 1cqw, 3px);
+      height: 4.9cqw;
       background: var(--ink);
     }
 
@@ -120,32 +127,32 @@
       color: var(--ink);
 
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 13px;
+      font-size: clamp(10px, 6.4cqw, 13px);
       line-height: 1;
 
       transform: translate(-50%, -50%);
     }
 
     .n12 {
-      top: 27px;
+      top: 13.2cqw;
       left: 50%;
     }
 
     .n3 {
       top: 50%;
-      right: 20px;
+      right: 9.8cqw;
       transform: translate(0, -50%);
     }
 
     .n6 {
-      bottom: 19px;
+      bottom: 9.3cqw;
       left: 50%;
       transform: translate(-50%, 0);
     }
 
     .n9 {
       top: 50%;
-      left: 23px;
+      left: 11.3cqw;
       transform: translate(0, -50%);
     }
 
@@ -161,27 +168,31 @@
     }
 
     .hour {
-      width: 6px;
-      height: 46px;
-      margin-left: -3px;
+      width: clamp(3px, 2.95cqw, 6px);
+      height: 22.5cqw;
+      margin-left: calc(clamp(3px, 2.95cqw, 6px) / -2);
 
       background: var(--ink);
-      box-shadow: 0 1px 2px rgba(68, 58, 50, 0.16);
+
+      box-shadow:
+        0 1px 2px rgba(68, 58, 50, 0.16);
     }
 
     .minute {
-      width: 4px;
-      height: 65px;
-      margin-left: -2px;
+      width: clamp(2px, 1.95cqw, 4px);
+      height: 31.9cqw;
+      margin-left: calc(clamp(2px, 1.95cqw, 4px) / -2);
 
       background: var(--ink);
-      box-shadow: 0 1px 2px rgba(68, 58, 50, 0.14);
+
+      box-shadow:
+        0 1px 2px rgba(68, 58, 50, 0.14);
     }
 
     .second {
-      width: 1.5px;
-      height: 71px;
-      margin-left: -0.75px;
+      width: clamp(1px, 0.74cqw, 1.5px);
+      height: 34.8cqw;
+      margin-left: calc(clamp(1px, 0.74cqw, 1.5px) / -2);
 
       background: var(--gold);
     }
@@ -192,8 +203,8 @@
       top: 100%;
       left: 50%;
 
-      width: 1.5px;
-      height: 17px;
+      width: clamp(1px, 0.74cqw, 1.5px);
+      height: 8.3cqw;
 
       background: var(--gold);
       transform: translateX(-50%);
@@ -205,28 +216,32 @@
       left: 50%;
       z-index: 4;
 
-      width: 12px;
-      height: 12px;
-      margin: -6px;
+      width: clamp(8px, 5.9cqw, 12px);
+      height: clamp(8px, 5.9cqw, 12px);
+
+      margin: calc(clamp(8px, 5.9cqw, 12px) / -2);
 
       background: var(--gold);
-      border: 3px solid var(--ivory);
+      border: clamp(2px, 1.45cqw, 3px) solid var(--ivory);
       border-radius: 50%;
 
-      box-shadow: 0 0 0 1px var(--gold);
+      box-shadow:
+        0 0 0 1px var(--gold);
     }
 
     .date {
-      margin: 11px 4px 1px;
+      margin: clamp(8px, 3.5cqw, 11px) 4px 1px;
 
       color: #8e7b69;
 
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 12px;
+      font-size: clamp(10px, 3.75cqw, 12px);
       font-style: italic;
       letter-spacing: 0.01em;
+      line-height: 1.25;
 
       text-align: center;
+      overflow-wrap: anywhere;
     }
   </style>
 </head>
@@ -246,7 +261,11 @@
       <div class="pin"></div>
     </div>
 
-    <div class="date" id="date" aria-live="polite"></div>
+    <div
+      class="date"
+      id="date"
+      aria-live="polite"
+    ></div>
   </main>
 
   <script>
@@ -256,9 +275,9 @@
     const secondHand = document.getElementById("second");
     const dateLabel = document.getElementById("date");
 
-    // Creează marcajele de pe cadran.
+    // Create the clock marks.
     for (let index = 0; index < 60; index += 1) {
-      // Nu pune marcaje peste cifrele 12, 3, 6 și 9.
+      // Keep the positions of 12, 3, 6 and 9 clear.
       if (index % 15 === 0) {
         continue;
       }
@@ -266,7 +285,9 @@
       const mark = document.createElement("span");
 
       mark.className =
-        index % 5 === 0 ? "mark major" : "mark";
+        index % 5 === 0
+          ? "mark major"
+          : "mark";
 
       mark.style.transform =
         `translateX(-50%) rotate(${index * 6}deg)`;
@@ -274,28 +295,34 @@
       clock.prepend(mark);
     }
 
-    // Data se adaptează automat la limba utilizatorului.
-    const dateFormatter = new Intl.DateTimeFormat(undefined, {
-      weekday: "long",
-      day: "numeric",
-      month: "long"
-    });
+    // Use the language of the person viewing the clock.
+    const dateFormatter =
+      new Intl.DateTimeFormat(undefined, {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
+      });
 
     let displayedDate = "";
 
     function updateClock() {
-      // Ora se adaptează automat la fusul orar al utilizatorului.
+      // The viewer's local timezone is used automatically.
       const now = new Date();
 
-      const milliseconds = now.getMilliseconds();
+      const milliseconds =
+        now.getMilliseconds();
+
       const seconds =
-        now.getSeconds() + milliseconds / 1000;
+        now.getSeconds() +
+        milliseconds / 1000;
 
       const minutes =
-        now.getMinutes() + seconds / 60;
+        now.getMinutes() +
+        seconds / 60;
 
       const hours =
-        (now.getHours() % 12) + minutes / 60;
+        (now.getHours() % 12) +
+        minutes / 60;
 
       hourHand.style.transform =
         `rotate(${hours * 30}deg)`;
@@ -306,7 +333,8 @@
       secondHand.style.transform =
         `rotate(${seconds * 6}deg)`;
 
-      const currentDate = dateFormatter.format(now);
+      const currentDate =
+        dateFormatter.format(now);
 
       if (currentDate !== displayedDate) {
         dateLabel.textContent = currentDate;
